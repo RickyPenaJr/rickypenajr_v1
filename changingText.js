@@ -5,7 +5,7 @@ let charIndex = 0; // Track the current character being typed
 let isDeleting = false; // Track whether we are deleting text
 
 // Speeds in milliseconds
-const typingSpeed = 200; // Typing and deleting speed per character
+const typingSpeed = 150; // Typing and deleting speed per character
 const pauseBetweenWords = 2000; // Pause after fully typing or deleting
 
 // Function to implement typing effect
@@ -19,7 +19,7 @@ function typeEffect() {
         // Update the text content
         dynamicText.textContent = currentTitle.substring(0, charIndex);
 
-        // Adjust typing or deleting logic
+        // Determine the typing/deleting state and update the charIndex
         if (!isDeleting) {
             // Typing: Add one character at a time
             charIndex++;
@@ -28,23 +28,22 @@ function typeEffect() {
             charIndex--;
         }
 
-        // Pause and switch states
+        // If fully typed, pause, then start deleting
         if (!isDeleting && charIndex === currentTitle.length) {
-            // Fully typed: Pause before deleting
-            isDeleting = true;
+            isDeleting = true; // Switch to deleting
             setTimeout(typeEffect, pauseBetweenWords);
-            return;
+            return; // Exit to handle pause separately
         }
 
+        // If fully deleted, pause, then move to the next word
         if (isDeleting && charIndex === 0) {
-            // Fully deleted: Move to the next title and pause
-            isDeleting = false;
-            titleIndex = (titleIndex + 1) % titles.length; // Loop to the next title
+            isDeleting = false; // Switch to typing the next word
+            titleIndex = (titleIndex + 1) % titles.length; // Move to the next title
             setTimeout(typeEffect, pauseBetweenWords);
-            return;
+            return; // Exit to handle pause separately
         }
 
-        // Call the function again after typing speed
+        // Call the function again after the typing speed
         setTimeout(typeEffect, typingSpeed);
     }
 }
