@@ -5,8 +5,8 @@ let charIndex = 0; // Index of the current character
 let isDeleting = false; // State: typing or deleting
 
 // Speeds in milliseconds
-const typingSpeed = 250; // Speed of typing each character
-const deletingSpeed = 250; // Speed of deleting each character
+const typingSpeed = 100; // Speed of typing each character
+const deletingSpeed = 100; // Speed of deleting each character
 const pauseAtEnd = 1000; // Pause at the end of a word
 
 // Typing effect function
