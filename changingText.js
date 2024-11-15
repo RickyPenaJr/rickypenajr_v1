@@ -6,7 +6,7 @@ let isDeleting = false; // Track whether we are deleting text
 
 // Speeds in milliseconds
 const typingSpeed = 150; // Typing and deleting speed per character
-const pauseBetweenWords = 2000; // Pause after fully typing or deleting
+const pauseBetweenWords = 1000; // Pause after fully typing or deleting
 
 // Function to implement typing effect
 function typeEffect() {
@@ -16,34 +16,30 @@ function typeEffect() {
         // Get the current title
         const currentTitle = titles[titleIndex];
 
-        // Update the text content
+        // Determine the displayed text
         dynamicText.textContent = currentTitle.substring(0, charIndex);
 
-        // Determine the typing/deleting state and update the charIndex
-        if (!isDeleting) {
+        // Update typing/deleting logic
+        if (!isDeleting && charIndex < currentTitle.length) {
             // Typing: Add one character at a time
             charIndex++;
-        } else {
+        } else if (isDeleting && charIndex > 0) {
             // Deleting: Remove one character at a time
             charIndex--;
-        }
-
-        // If fully typed, pause, then start deleting
-        if (!isDeleting && charIndex === currentTitle.length) {
+        } else if (!isDeleting && charIndex === currentTitle.length) {
+            // Pause after fully typing
             isDeleting = true; // Switch to deleting
             setTimeout(typeEffect, pauseBetweenWords);
-            return; // Exit to handle pause separately
-        }
-
-        // If fully deleted, pause, then move to the next word
-        if (isDeleting && charIndex === 0) {
-            isDeleting = false; // Switch to typing the next word
+            return;
+        } else if (isDeleting && charIndex === 0) {
+            // Pause after fully deleting
+            isDeleting = false; // Switch to typing the next title
             titleIndex = (titleIndex + 1) % titles.length; // Move to the next title
             setTimeout(typeEffect, pauseBetweenWords);
-            return; // Exit to handle pause separately
+            return;
         }
 
-        // Call the function again after the typing speed
+        // Continue typing/deleting at consistent speed
         setTimeout(typeEffect, typingSpeed);
     }
 }
