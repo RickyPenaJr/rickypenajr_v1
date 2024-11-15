@@ -16,31 +16,32 @@ function typeEffect() {
         // Get the current title
         const currentTitle = titles[titleIndex];
 
-        // Determine the displayed text
+        // Update text content
         dynamicText.textContent = currentTitle.substring(0, charIndex);
 
-        // Update typing/deleting logic
-        if (!isDeleting && charIndex < currentTitle.length) {
-            // Typing: Add one character at a time
-            charIndex++;
-        } else if (isDeleting && charIndex > 0) {
-            // Deleting: Remove one character at a time
-            charIndex--;
-        } else if (!isDeleting && charIndex === currentTitle.length) {
-            // Pause after fully typing
-            isDeleting = true; // Switch to deleting
-            setTimeout(typeEffect, pauseBetweenWords);
-            return;
-        } else if (isDeleting && charIndex === 0) {
-            // Pause after fully deleting
-            isDeleting = false; // Switch to typing the next title
-            titleIndex = (titleIndex + 1) % titles.length; // Move to the next title
-            setTimeout(typeEffect, pauseBetweenWords);
-            return;
+        // Manage typing and deleting behavior
+        if (!isDeleting) {
+            if (charIndex < currentTitle.length) {
+                // Continue typing
+                charIndex++;
+                setTimeout(typeEffect, typingSpeed);
+            } else {
+                // Pause after fully typing
+                isDeleting = true;
+                setTimeout(typeEffect, pauseBetweenWords);
+            }
+        } else {
+            if (charIndex > 0) {
+                // Continue deleting
+                charIndex--;
+                setTimeout(typeEffect, typingSpeed);
+            } else {
+                // Move to the next title after fully deleting
+                isDeleting = false;
+                titleIndex = (titleIndex + 1) % titles.length; // Loop back to the start
+                setTimeout(typeEffect, pauseBetweenWords);
+            }
         }
-
-        // Continue typing/deleting at consistent speed
-        setTimeout(typeEffect, typingSpeed);
     }
 }
 
