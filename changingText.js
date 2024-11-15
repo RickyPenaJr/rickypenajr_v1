@@ -1,14 +1,15 @@
 // Array of titles to cycle through
 const titles = ["Ricky Peña", "Data Analyst", "Consultant", "Creator"];
-let titleIndex = 0; // Track the current title
-let charIndex = 0; // Track the current character being typed
-let isDeleting = false; // Track whether we are deleting text
+let titleIndex = 0; // Index of the current title
+let charIndex = 0; // Index of the current character
+let isDeleting = false; // State: typing or deleting
 
 // Speeds in milliseconds
-const typingSpeed = 150; // Speed for both typing and deleting
-const pauseAtEnd = 1000; // Pause after fully typing or deleting
+const typingSpeed = 150; // Speed of typing each character
+const deletingSpeed = 150; // Speed of deleting each character
+const pauseAtEnd = 1000; // Pause at the end of a word
 
-// Function to implement the typing effect
+// Typing effect function
 function typeEffect() {
     const dynamicText = document.getElementById("dynamic-text");
 
@@ -16,32 +17,35 @@ function typeEffect() {
         // Get the current title
         const currentTitle = titles[titleIndex];
 
-        // Adjust the text content
-        if (isDeleting) {
-            charIndex--; // Remove characters
+        // Update the text content based on the current state
+        if (!isDeleting) {
+            // Typing state: Add characters one by one
+            charIndex++;
+            dynamicText.textContent = currentTitle.substring(0, charIndex);
+
+            // If the word is fully typed, switch to pause state
+            if (charIndex === currentTitle.length) {
+                isDeleting = true; // Start deleting after the pause
+                setTimeout(typeEffect, pauseAtEnd);
+                return;
+            }
         } else {
-            charIndex++; // Add characters
-        }
-        dynamicText.textContent = currentTitle.substring(0, charIndex);
+            // Deleting state: Remove characters one by one
+            charIndex--;
+            dynamicText.textContent = currentTitle.substring(0, charIndex);
 
-        // Determine the timing for the next update
-        let nextDelay = typingSpeed;
-
-        // If fully typed, pause before deleting
-        if (!isDeleting && charIndex === currentTitle.length) {
-            isDeleting = true;
-            nextDelay = pauseAtEnd;
-        }
-
-        // If fully deleted, pause before typing the next title
-        if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            titleIndex = (titleIndex + 1) % titles.length; // Loop to the next title
-            nextDelay = pauseAtEnd;
+            // If the word is fully deleted, move to the next word
+            if (charIndex === 0) {
+                isDeleting = false; // Start typing the next word
+                titleIndex = (titleIndex + 1) % titles.length; // Loop back to the first title
+                setTimeout(typeEffect, pauseAtEnd);
+                return;
+            }
         }
 
-        // Schedule the next update
-        setTimeout(typeEffect, nextDelay);
+        // Call the function again after the appropriate speed
+        const delay = isDeleting ? deletingSpeed : typingSpeed;
+        setTimeout(typeEffect, delay);
     }
 }
 
