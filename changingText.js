@@ -1,5 +1,5 @@
 // Array of titles to cycle through
-const titles = [" Ricky Peña ", " A Data Analyst ", " A Consultant ", " A Creator "];
+const titles = [" Ricky Peña ", " a Data Analyst ", " a Consultant ", " a Creator "];
 let titleIndex = 0; // Index of the current title
 let charIndex = 0; // Index of the current character
 let isDeleting = false; // State: typing or deleting
