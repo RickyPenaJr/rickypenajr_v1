@@ -1,6 +1,6 @@
 ## rickypenajr_v1
 <br>
-This website was the V1 (1st Version) of my Portfolio - https://rickypenajr.github.io/rickypenajr_v1/
+This website was the <strong>V1 (1st Version) </strong>of my Portfolio - https://rickypenajr.github.io/rickypenajr_v1/
 <br>
 <strong>Last Updated: </strong>March 12, 2025
 <br>
