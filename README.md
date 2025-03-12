@@ -7,12 +7,10 @@ Last Updated: March 12, 2025
 <br>
 <br>
 <br>
-This remains publicly accessible, allowing viewers to review the progress from earlier versions to the current one.
-<br>
-<br>
 As my first portfolio, this was the beginning of wanting to fully commit to showcasing projects relevant to my interests and professional development
-
-
+<br>
+<br>
+This remains publicly accessible, allowing viewers to review the progress from earlier versions to the current one.
 
 
 
