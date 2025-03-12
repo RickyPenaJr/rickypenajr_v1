@@ -8,8 +8,6 @@ This website was the <strong>V1 (1st Version) </strong>of my Portfolio - https:/
 <br>
 <br>
 <li>As my first portfolio, this was the beginning of wanting to fully commit to showcasing projects relevant to my interests and professional development.</li>
-<br>
-<br>
 <li>This remains publicly accessible, allowing viewers to review the progress from earlier versions to the current one.</li>
 
 
