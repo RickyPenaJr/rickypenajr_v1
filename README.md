@@ -5,6 +5,7 @@ This website was the <strong>V1 (1st Version) </strong>of my Portfolio - https:/
 <strong>Last Updated: </strong>March 12, 2025
 <br>
 <br>
+<br>
 <li>As my first portfolio, this was the beginning of wanting to fully commit to showcasing projects relevant to my interests and professional development throughout my career.</li>
 <li>This remains publicly accessible, allowing viewers to review the progress from earlier versions to the current one.</li>
 
