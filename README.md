@@ -2,7 +2,7 @@
 <br>
 This website was the V1 (1st Version) of my Portfolio - https://rickypenajr.github.io/rickypenajr_v1/
 <br>
-Last Updated: March 12, 2025
+<strong>Last Updated: </strong>March 12, 2025
 <br>
 <br>
 <br>
